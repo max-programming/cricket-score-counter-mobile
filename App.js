@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import * as Font from "expo-font";
 import { AppLoading } from "expo";
-import { ScoreProvider } from "./context/ScoreContext";
-import Score from "./components/Score";
+import * as Font from "expo-font";
+import React, { useState } from "react";
+import { StyleSheet, View } from "react-native";
 import Controls from "./components/Controls";
+import Score from "./components/Score";
+import { ScoreProvider } from "./context/ScoreContext";
 
 const getFonts = () =>
   Font.loadAsync({
