@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { ScoreContext } from "../context/ScoreContext";
 
 export default function Score() {
+  const {
+    runs,
+    wickets,
+    over: { overNo, ballNo },
+  } = useContext(ScoreContext);
   return (
     <>
       <View style={styles.score}>
-        <Text style={styles.text}>00</Text>
-        <Text style={styles.text}>0</Text>
+        <Text style={styles.text}>{runs >= 10 ? runs : `0${runs}`}</Text>
+        <Text style={styles.text}>{wickets}</Text>
       </View>
       <View style={styles.overs}>
         <Text style={styles.overText}>
-          Overs: <Text style={styles.overNo}>0.0</Text>
+          Overs:{" "}
+          <Text style={styles.overNo}>
+            {overNo}.{ballNo}
+          </Text>
         </Text>
       </View>
       <View style={styles.hr} />

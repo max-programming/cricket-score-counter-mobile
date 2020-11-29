@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
+import { ScoreProvider } from "./context/ScoreContext";
 import Score from "./components/Score";
+import Controls from "./components/Controls";
 
 const getFonts = () =>
   Font.loadAsync({
@@ -12,18 +14,22 @@ const getFonts = () =>
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
-
   return (
-    <View style={styles.container}>
-      {fontsLoaded ? (
-        <Score />
-      ) : (
-        <AppLoading
-          startAsync={getFonts}
-          onFinish={() => setFontsLoaded(true)}
-        />
-      )}
-    </View>
+    <ScoreProvider>
+      <View style={styles.container}>
+        {fontsLoaded ? (
+          <>
+            <Score />
+            <Controls />
+          </>
+        ) : (
+          <AppLoading
+            startAsync={getFonts}
+            onFinish={() => setFontsLoaded(true)}
+          />
+        )}
+      </View>
+    </ScoreProvider>
   );
 }
 
